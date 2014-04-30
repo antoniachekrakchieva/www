@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+    table {
+        margin-top: 100px;
+    }
+    td{
+        width: 300px;
+        height: 100px;
+    }
+    </style>
+    <script type="text/javascript">
+    var myArray = ['(0:0)', '(0:1)', '(0:2)', '(1:0)', '(1:1)', '(1:2)', '(2:0)', '(2:1)', '(2:2)'];  
+    var winner = "NO";
+        function a(id){
+            var x = document.getElementById(id);
+            if(x.style.backgroundColor != "green" || x.style.backgroundColor != "yellow"){
+                if(winner == "NO"){
+                    x.style.backgroundColor = "yellow"; 
+                    c();
+                    b(id); 
+                }
+            }
+            
+        }
+        function b(id){
+            console.log("dad");
+            if(winner == "NO"){
+                var index = myArray.indexOf(id);
+                myArray.splice(index,1);
+                var rand = myArray[Math.floor(Math.random() * myArray.length)];
+                var x = document.getElementById(rand);
+                x.style.backgroundColor = "green";
+                index = myArray.indexOf(rand);
+                myArray.splice(index,1);
+                d();  
+            } 
+            
+        }
+        function c(){
+            var x = document.getElementById('mytable').getElementsByTagName("td");
+            if (x[0].style.backgroundColor == "yellow" && x[1].style.backgroundColor == "yellow" && x[2].style.backgroundColor == "yellow" || x[3].style.backgroundColor == "yellow" && x[4].style.backgroundColor == "yellow" && x[5].style.backgroundColor == "yellow" || x[6].style.backgroundColor == "yellow" && x[7].style.backgroundColor == "yellow" && x[8].style.backgroundColor == "yellow" || x[0].style.backgroundColor == "yellow" && x[3].style.backgroundColor == "yellow" && x[6].style.backgroundColor == "yellow" || x[1].style.backgroundColor == "yellow" && x[4].style.backgroundColor == "yellow" && x[7].style.backgroundColor == "yellow" || x[2].style.backgroundColor == "yellow" && x[5].style.backgroundColor == "yellow" && x[8].style.backgroundColor == "yellow" || x[0].style.backgroundColor == "yellow" && x[4].style.backgroundColor == "yellow" && x[8].style.backgroundColor == "yellow" || x[2].style.backgroundColor == "yellow" && x[4].style.backgroundColor == "yellow" && x[6].style.backgroundColor == "yellow"){
+                alert("You win!");
+                winner = "Yes";
+                document.getElementById('h1').innerHTML = 'You win!';
+            }
+        }
+        function d(){
+            var x = document.getElementById('mytable').getElementsByTagName("td");
+            if(x[0].style.backgroundColor == "green" && x[1].style.backgroundColor == "green" && x[2].style.backgroundColor == "green" || x[3].style.backgroundColor == "green" && x[4].style.backgroundColor == "green" && x[5].style.backgroundColor == "green" || x[6].style.backgroundColor == "green" && x[7].style.backgroundColor == "green" && x[8].style.backgroundColor == "green" || x[0].style.backgroundColor == "green" && x[3].style.backgroundColor == "green" && x[6].style.backgroundColor == "green" || x[1].style.backgroundColor == "green" && x[4].style.backgroundColor == "green" && x[7].style.backgroundColor == "green" || x[2].style.backgroundColor == "green" && x[5].style.backgroundColor == "green" && x[8].style.backgroundColor == "green" || x[0].style.backgroundColor == "green" && x[4].style.backgroundColor == "green" && x[8].style.backgroundColor == "green" || x[2].style.backgroundColor == "green" && x[4].style.backgroundColor == "green" && x[6].style.backgroundColor == "green"){
+                alert("You lose! Computer win!");
+                document.getElementById('h1').innerHTML = 'You lose! Computer win!';
+                winner = "Yes";
+
+            }
+        }
+        function v(){
+            myArray = [];
+            var x = document.getElementById('mytable').getElementsByTagName("td");
+            for(var i=0;i<9;i++){
+                x[i].style.backgroundColor = "white";
+            }
+            winner = "NO";
+            myArray.push('(0:0)', '(0:1)', '(0:2)', '(1:0)', '(1:1)', '(1:2)', '(2:0)', '(2:1)', '(2:2)');
+            document.getElementById('h1').innerHTML = 'Playing ..';
+        }
+    </script>
+    <h1 id="h1" align="center">Playing ..</h1>
+</head>
+<body>
+<button onclick="v()">New Game</button>
+<table border="1" style="width:300px" id="mytable" align="center">
+    <tr>
+        <td onclick="a(id)" id="(0:0)"></td>
+        <td onclick="a(id)" id="(0:1)"></td>		
+        <td onclick="a(id)" id="(0:2)"></td>
+    </tr>
+    <tr>
+        <td onclick="a(id)" id="(1:0)"></td>
+        <td onclick="a(id)" id="(1:1)"></td>        
+        <td onclick="a(id)" id="(1:2)"></td>
+    </tr>
+    <tr>
+        <td onclick="a(id)" id="(2:0)"></td>
+        <td onclick="a(id)" id="(2:1)"></td>        
+        <td onclick="a(id)" id="(2:2)"></td>
+    </tr>
+</table>
+
+</body>
+</html>

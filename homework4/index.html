@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<title>Coins count</title>
+		
+	</head>
+	<body>
+		<p id="result"></p>
+		<p id="result2"></p>
+		<script >
+		function myFunction(number){
+			var coins = [1, 2, 5, 10, 20, 50];
+			var sl = number + 1;
+			var sum=[];
+			while (sl){
+				sum[sl]= 0;
+				sl--;
+			};
+			sum[0] = 1;
+			for (coin in coins){
+				for(var j=coins[coin]; j<=number;j++){
+					sum[j] = sum[j] + sum[j - coins[coin]];
+					
+				}
+			}
+			return sum[number];
+		}
+		document.getElementById("result").innerHTML=myFunction(4);
+		document.getElementById("result2").innerHTML=myFunction(100);
+		</script>
+	</body>
+</html>
